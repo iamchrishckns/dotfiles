@@ -1,14 +1,5 @@
 # My dotfiles
 
-## Oh My Posh
+## Tmux config
 
-For my prompt I almost always use [Oh My Posh](https://ohmyposh.dev/).
-It's a "prompt engine" for any shell written in go.
-
-I created my own theme that I like to use.
-
-You can find it [here](oh-my-posh/themes/iamchrishckns.omp.json).
-
-<p>
-    <img alt="Oh My Posh Windows Terminal" src="images/2021-11-24 oh-my-posh-windows-terminal.png" />
-</p>
+More details for my tmux config are [here](tmux/README.md).
