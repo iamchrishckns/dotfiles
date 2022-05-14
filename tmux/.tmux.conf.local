@@ -1,0 +1,26 @@
+# Local config overrides
+# ----------------------
+
+# Local functions overrides
+# -------------------------
+
+# EOF
+# # Example override function.
+# # For the following to take effect the start "# #" needs to be replaced with "# ".
+# #_hostname_override() {
+# #    tty=${1:-}
+# #    hostname="$(ps -t "${tty}" -o user=WIDEOUTPUTFORLONGNAME -o pid= -o ppid= -o command= | awk '((/govm / || /gove /)) {print $6}')"
+# #    if [ -n "${hostname}" ]; then
+# #        printf '%s' "${hostname}"
+# #    else
+# #        tty_stats="$(_tty_stats "${tty}")"
+# #        cmdline="${tty_stats#*:}"
+# #        cmdline="${cmdline#*:}"
+# #        if _is_ssh "${cmdline}";then
+# #            ssh_stats="$(_ssh_stats "${cmdline}")"
+# #            printf '%s' "${ssh_stats##*:}"
+# #        else
+# #            printf '%s' "$(uname -n)"
+# #        fi
+# #    fi
+# #}
