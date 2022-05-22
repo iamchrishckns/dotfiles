@@ -27,6 +27,8 @@ My `prefix` is `C` `Space`
 - `<prefix>` `R` reload config
 - `<prefix>` `S` sync panes
 - `<prefix>` `x` kill pane
+- `<prefix>` `c` new window
+- `<prefix>` `C` new window with current path
 - `<prefix>` `Tab` previous window
 - `F12` toggle keymap between local and remote
 
@@ -39,19 +41,23 @@ Github:
 - [gpakosz/.tmux](https://github.com/gpakosz/.tmux)
 - [oliverwiegers/.tmuxist](https://github.com/oliverwiegers/.tmuxist)
 
-Reddit / YouTube: 
+Reddit:
 
 - [r/tmux](https://www.reddit.com/r/tmux)
-- [r/unixporn](https://www.reddit.com/r/unixporn)
-- [YouTube Video by Tech Craft: Inside my iPad Pro SSH Setup - TMUX](https://www.youtube.com/watch?v=B-1wGwvUwm8)
-- [YouTube Playlist by LearnLinuxTV: Getting Started with tmux](https://www.youtube.com/playlist?list=PLT98CRl2KxKGiyV1u6wHDV8VwcQdzfuKe)
-- [YouTube Video by Nick Janetakis: A Productive Linux Development Environment on Windows with WSL, Docker, tmux, VSCode and More](https://www.youtube.com/watch?v=5gu8wWX3Ob4)
+- [r/unixporn](https://www.reddit.com/r/unixporn) - Despite the name it's safe for work ;)
+
+YouTube: 
+
+- [Tech Craft: Inside my iPad Pro SSH Setup - TMUX](https://www.youtube.com/watch?v=B-1wGwvUwm8)
+- [LearnLinuxTV (Playlist): Getting Started with tmux](https://www.youtube.com/playlist?list=PLT98CRl2KxKGiyV1u6wHDV8VwcQdzfuKe)
+- [Nick Janetakis: A Productive Linux Development Environment on Windows with WSL, Docker, tmux, VSCode and More](https://www.youtube.com/watch?v=5gu8wWX3Ob4)
+- [Conference in the Cloud! A Perl and Raku Conf: Doug Bell - "Organized Development With tmux"](https://www.youtube.com/watch?v=o7Dg1kmjhfQ)
 
 Other:
 
 - [Tmux Cheat Sheet & Quick Reference](https://tmuxcheatsheet.com/)
 - [TMUX man page](https://man7.org/linux/man-pages/man1/tmux.1.html)
-
+- [Local Coder tmux articles](https://localcoder.org/category/tmux)
 ## Credit where credit is due
 
 I was heavily inspired by the self-contained configs from [gpakosz/.tmux](https://github.com/gpakosz/.tmux) and [oliverwiegers/.tmuxist](https://github.com/oliverwiegers/.tmuxist).
