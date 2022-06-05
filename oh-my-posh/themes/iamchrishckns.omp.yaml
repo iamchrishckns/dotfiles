@@ -1,0 +1,119 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+version: 2
+
+transient_prompt:
+  template: "{{ if .Root }}<lightRed>ﬦ</>{{ else }}<lightBlue>ﬦ</>{{ end }} "
+
+# ANSI Borders
+# ┌──┬──┐ ╭╮
+# │  │  │ ╰╯
+# ├──┼──┤
+# │  │  │
+# └──┴──┘
+
+blocks:
+  # Left prompt first line
+  - type: prompt
+    alignment: left
+    segments:
+      - type: text
+        style: plain
+        template: <{{ if .Root }}lightBlue{{ else }}green{{ end }}>╭─</>
+
+      - type: os
+        style: plain
+        foreground: lightBlue
+        foreground_templates:
+          - "{{ if .Root }}lightRed{{ end }}"
+        template: "<{{ if .Root }}lightBlue{{ else }}green{{ end }}>(</>{{ if .WSL }}WSL at {{ end }}{{.Icon}}<{{ if .Root }}lightBlue{{ else }}green{{ end }}>)</>"
+
+      - type: session
+        style: plain
+        foreground: lightBlue
+        foreground_templates:
+          - "{{ if .Root }}lightRed{{ end }}"
+        properties:
+          display_host: true
+        template: "<{{ if .Root }}lightBlue{{ else }}green{{ end }}>─(</>{{ .UserName }} on {{ .HostName }}<{{ if .Root }}lightBlue{{ else }}green{{ end }}>)</>"
+
+      - type: path
+        style: plain
+        foreground: lightWhite
+        properties:
+          folder_separator_icon: <#c0c0c0>/</>
+          style: full
+        template: <{{ if .Root }}lightBlue{{ else }}green{{ end }}>-[</>{{ .Path }}<{{ if .Root }}lightBlue{{ else }}green{{ end }}>]</>
+
+  # Right prompt first line
+  - type: prompt
+    alignment: right
+    segments:
+      - type: session
+        style: plain
+        foreground: lightBlue
+        foreground_templates:
+          - "{{ if .Root }}lightRed{{ end }}"
+        template: "<{{ if .Root }}lightBlue{{ else }}green{{ end }}>(</>{{ if .SSHSession }}SSH{{ end }}<{{ if .Root }}lightBlue{{ else }}green{{ end }}>)─</>"
+
+      - type: battery
+        style: plain
+        foreground: lightBlue
+        foreground_templates:
+          - "{{ if .Root }}lightRed{{ end }}"
+        properties:
+          display_error: false
+          charging_icon: 
+          discharging_icon: 
+          charged_icon: 
+        template: "<{{ if .Root }}lightBlue{{ else }}green{{ end }}>(</>{{ .Icon }}{{ .Percentage }}<{{ if .Root }}lightBlue{{ else }}green{{ end }}>)─</>"
+
+      - type: executiontime
+        style: plain
+        foreground: lightBlue
+        foreground_templates:
+          - "{{ if .Root }}lightRed{{ end }}"
+        properties:
+          always_enabled: true
+          style: round
+        template: "<{{ if .Root }}lightBlue{{ else }}green{{ end }}>(</>{{ .FormattedMs }}<{{ if .Root }}lightBlue{{ else }}green{{ end }}>)─</>"
+
+      - type: exit
+        style: plain
+        foreground: green
+        foreground_templates:
+          - "{{ if gt .Code 0 }}red{{ end }}"
+        properties:
+          always_enabled: true
+        template: <{{ if .Root }}lightBlue{{ else }}green{{ end }}>(</>{{ if gt .Code 0 }}⨯{{else}}✓{{ end }}<{{ if .Root }}lightBlue{{ else }}green{{ end }}>)</>
+
+  # Left prompt second line
+  - type: prompt
+    alignment: left
+    newline: true
+    segments:
+      - type: git
+        style: plain
+        foreground: lightBlue
+        foreground_templates:
+          - "{{ if .Root }}lightRed{{ end }}"
+        properties:
+          fetch_status: true
+          fetch_stash_count: true
+          fetch_worktree_count: true
+          fetch_upstream_icon: true
+          branch_max_length: 0
+        template: "<{{ if .Root }}lightBlue{{ else }}green{{ end }}>├─[</>{{ .UpstreamIcon }}{{ .HEAD }}{{ .BranchStatus }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}<{{ if .Root }}lightBlue{{ else }}green{{ end }}>]</>"
+
+  # Left prompt third line
+  - type: prompt
+    alignment: left
+    newline: true
+    segments:
+      - type: text
+        style: plain
+        template: <{{ if .Root }}lightBlue{{ else }}green{{ end }}>╰─</>
+
+      - type: text
+        style: plain
+        foreground: lightBlue
+        template: "<{{ if .Root }}lightBlue{{ else }}green{{ end }}>(</>{{ if .Root }}<lightRed> ﬦ</>{{ else }} ﬦ{{ end }} "
