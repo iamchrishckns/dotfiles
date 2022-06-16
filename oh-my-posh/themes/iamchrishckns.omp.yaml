@@ -48,12 +48,17 @@ blocks:
   - type: prompt
     alignment: right
     segments:
+      - type: kubectl
+        style: plain
+        foreground: lightBlue
+        template: "<{{ if .Root }}lightBlue{{ else }}green{{ end }}>(</>ﴱ {{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}}<{{ if .Root }}lightBlue{{ else }}green{{ end }}>)─</>"
+
       - type: session
         style: plain
         foreground: lightBlue
         foreground_templates:
           - "{{ if .Root }}lightRed{{ end }}"
-        template: "<{{ if .Root }}lightBlue{{ else }}green{{ end }}>(</>{{ if .SSHSession }}SSH{{ end }}<{{ if .Root }}lightBlue{{ else }}green{{ end }}>)─</>"
+        template: "{{ if .SSHSession }}<{{ if .Root }}lightBlue{{ else }}green{{ end }}>(</>SSH<{{ if .Root }}lightBlue{{ else }}green{{ end }}>)─</>{{ end }}"
 
       - type: battery
         style: plain
