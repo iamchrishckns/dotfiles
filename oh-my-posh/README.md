@@ -4,9 +4,13 @@
 
 I created my own theme which is a mix of [multiple themes from the offical docs](https://ohmyposh.dev/docs/themes).
 
-You can find it [here](themes/iamchrishckns.omp.json).
+You can find it [here](themes/iamchrishckns.omp.yaml).
 
 ## Installation
+
+```bash
+ln -s ~/CODE/github.com/iamchrishckns/dotfiles/oh-my-posh/themes/iamchrishckns.omp.yaml ~/.theme.omp.yaml
+```
 
 ### Linux
 
@@ -43,9 +47,13 @@ With homebrew (already includes the default themes):
 brew install jandedobbeleer/oh-my-posh/oh-my-posh
 ```
 
-
 ---
 
-It is recommended to have a [Nerd Font](https://www.nerdfonts.com/) installed, otherwise the prompt will not look good 😟.
+It is recommended to have some kind of a [Nerd Font](https://www.nerdfonts.com/) installed, otherwise the prompt will not look good 😟.
 
-My favorite [Nerd Font](https://www.nerdfonts.com/) which I use almost everywhere is "Caskaydia Cove Nerd Font" which is based on the open source monospaced font "[Cascadia Code](https://github.com/microsoft/cascadia-code)" from Microsoft.
+Right now I use [Delugia](https://github.com/adam7/delugia-code) which is a patched version of Cascadia Code with [Nerd Fonts](https://www.nerdfonts.com/) included.
+I use this instead of the original version of [Cascadia Code](https://github.com/microsoft/cascadia-code) by [Nerd Fonts](https://www.nerdfonts.com/) named "Caskaydia Cove Nerd Font" because I had some display issues with it.
+
+[Cascadia Code](https://github.com/microsoft/cascadia-code) is a open source monospaced font from Microsoft.
+
+~~My favorite [Nerd Font](https://www.nerdfonts.com/) which I use almost everywhere is "Caskaydia Cove Nerd Font" which is based on the open source monospaced font "[Cascadia Code](https://github.com/microsoft/cascadia-code)" from Microsoft.~~
