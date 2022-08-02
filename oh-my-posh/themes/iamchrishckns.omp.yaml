@@ -2,7 +2,8 @@
 version: 2
 
 transient_prompt:
-  template: "{{ if .Root }}<lightRed>ﬦ</>{{ else }}<lightBlue>ﬦ</>{{ end }} "
+  # template: "{{ if .Root }}<lightRed>ﬦ</>{{ else }}<lightBlue>ﬦ</>{{ end }} "
+  template: "{{ if .Root }}<lightRed></>{{ else }}<lightBlue></>{{ end }} "
 
 # ANSI Borders
 # ┌──┬──┐ ╭╮
@@ -11,6 +12,15 @@ transient_prompt:
 # │  │  │
 # └──┴──┘
 
+# Theme colors:
+# Decoration -> green
+# Default -> lightBlue
+# Root -> lightRed
+
+# Available colors:
+# black    red      green      yellow      blue      magenta      cyan      white
+# darkGray lightRed lightGreen lightYellow lightBlue lightMagenta lightCyan lightWhite
+
 blocks:
   # Left prompt first line
   - type: prompt
@@ -18,14 +28,14 @@ blocks:
     segments:
       - type: text
         style: plain
-        template: <{{ if .Root }}lightBlue{{ else }}green{{ end }}>╭─</>
+        template: <{{ if .Root }}lightRed{{ else }}green{{ end }}>╭─</>
 
       - type: os
         style: plain
         foreground: lightBlue
         foreground_templates:
           - "{{ if .Root }}lightRed{{ end }}"
-        template: "<{{ if .Root }}lightBlue{{ else }}green{{ end }}>(</>{{ if .WSL }}WSL at {{ end }}{{.Icon}}<{{ if .Root }}lightBlue{{ else }}green{{ end }}>)</>"
+        template: "<{{ if .Root }}lightRed{{ else }}green{{ end }}></>{{ if .WSL }}WSL at {{ end }}{{.Icon}}<{{ if .Root }}lightRed{{ else }}green{{ end }}></>"
 
       - type: session
         style: plain
@@ -34,31 +44,32 @@ blocks:
           - "{{ if .Root }}lightRed{{ end }}"
         properties:
           display_host: true
-        template: "<{{ if .Root }}lightBlue{{ else }}green{{ end }}>─(</>{{ .UserName }} on {{ .HostName }}<{{ if .Root }}lightBlue{{ else }}green{{ end }}>)</>"
+        template: "<{{ if .Root }}lightRed{{ else }}green{{ end }}>─(</>{{ .UserName }} on {{ .HostName }}<{{ if .Root }}lightRed{{ else }}green{{ end }}>)</>"
 
       - type: path
         style: plain
-        foreground: lightWhite
+        foreground: magenta
         properties:
           folder_separator_icon: <#c0c0c0>/</>
           style: full
-        template: <{{ if .Root }}lightBlue{{ else }}green{{ end }}>-[</>{{ .Path }}<{{ if .Root }}lightBlue{{ else }}green{{ end }}>]</>
+        template: <{{ if .Root }}lightRed{{ else }}green{{ end }}>-(</>{{ .Path }}<{{ if .Root }}lightRed{{ else }}green{{ end }}>)</>
 
   # Right prompt first line
   - type: prompt
     alignment: right
+    filler: "  "
     segments:
       - type: kubectl
         style: plain
         foreground: lightBlue
-        template: "<{{ if .Root }}lightBlue{{ else }}green{{ end }}>(</>ﴱ {{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}}<{{ if .Root }}lightBlue{{ else }}green{{ end }}>)─</>"
+        template: "<{{ if .Root }}lightRed{{ else }}green{{ end }}>(</>ﴱ {{if .Context}}{{.Context}} / {{end}}{{if .Cluster}}{{.Cluster}} / {{end}}{{if .Namespace}}{{.Namespace}}{{end}}<{{ if .Root }}lightRed{{ else }}green{{ end }}>)</>"
 
       - type: session
         style: plain
         foreground: lightBlue
         foreground_templates:
           - "{{ if .Root }}lightRed{{ end }}"
-        template: "{{ if .SSHSession }}<{{ if .Root }}lightBlue{{ else }}green{{ end }}>(</>SSH<{{ if .Root }}lightBlue{{ else }}green{{ end }}>)─</>{{ end }}"
+        template: "{{ if .SSHSession }}<{{ if .Root }}lightRed{{ else }}green{{ end }}>-(</>SSH<{{ if .Root }}lightRed{{ else }}green{{ end }}>)─</>{{ end }}"
 
       - type: battery
         style: plain
@@ -70,7 +81,7 @@ blocks:
           charging_icon: 
           discharging_icon: 
           charged_icon: 
-        template: "<{{ if .Root }}lightBlue{{ else }}green{{ end }}>(</>{{ .Icon }}{{ .Percentage }}<{{ if .Root }}lightBlue{{ else }}green{{ end }}>)─</>"
+        template: "<{{ if .Root }}lightRed{{ else }}green{{ end }}>-(</>{{ .Icon }}{{ .Percentage }}<{{ if .Root }}lightRed{{ else }}green{{ end }}>)─</>"
 
       - type: executiontime
         style: plain
@@ -80,7 +91,7 @@ blocks:
         properties:
           always_enabled: true
           style: round
-        template: "<{{ if .Root }}lightBlue{{ else }}green{{ end }}>(</>{{ .FormattedMs }}<{{ if .Root }}lightBlue{{ else }}green{{ end }}>)─</>"
+        template: "<{{ if .Root }}lightRed{{ else }}green{{ end }}>-(</>{{ .FormattedMs }}<{{ if .Root }}lightRed{{ else }}green{{ end }}>)─</>"
 
       - type: exit
         style: plain
@@ -89,7 +100,7 @@ blocks:
           - "{{ if gt .Code 0 }}red{{ end }}"
         properties:
           always_enabled: true
-        template: <{{ if .Root }}lightBlue{{ else }}green{{ end }}>(</>{{ if gt .Code 0 }}⨯{{else}}✓{{ end }}<{{ if .Root }}lightBlue{{ else }}green{{ end }}>)</>
+        template: "<{{ if .Root }}lightRed{{ else }}green{{ end }}>(</>{{ if gt .Code 0 }}⨯{{else}}✓{{ end }}<{{ if .Root }}lightRed{{ else }}green{{ end }}>)</>"
 
   # Left prompt second line
   - type: prompt
@@ -107,18 +118,19 @@ blocks:
           fetch_worktree_count: true
           fetch_upstream_icon: true
           branch_max_length: 0
-        template: "<{{ if .Root }}lightBlue{{ else }}green{{ end }}>├─[</>{{ .UpstreamIcon }}{{ .HEAD }}{{ .BranchStatus }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}<{{ if .Root }}lightBlue{{ else }}green{{ end }}>]</>"
+        template: "<{{ if .Root }}lightRed{{ else }}green{{ end }}>╰─[</>{{ .UpstreamIcon }}{{ .HEAD }}{{ .BranchStatus }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}<{{ if .Root }}lightRed{{ else }}green{{ end }}>]</>"
 
   # Left prompt third line
   - type: prompt
     alignment: left
     newline: true
     segments:
-      - type: text
-        style: plain
-        template: <{{ if .Root }}lightBlue{{ else }}green{{ end }}>╰─</>
+      # - type: text
+      #   style: plain
+      #   template: "<{{ if .Root }}lightRed{{ else }}green{{ end }}>╰─( </>"
 
       - type: text
         style: plain
         foreground: lightBlue
-        template: "<{{ if .Root }}lightBlue{{ else }}green{{ end }}>(</>{{ if .Root }}<lightRed> ﬦ</>{{ else }} ﬦ{{ end }} "
+        # template: "{{ if .Root }}<lightRed>ﬦ </>{{ else }}ﬦ {{ end }}"
+        template: "{{ if .Root }}<lightRed></>{{ else }}{{ end }} "
