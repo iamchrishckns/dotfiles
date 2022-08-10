@@ -26,16 +26,16 @@ blocks:
   - type: prompt
     alignment: left
     segments:
-      - type: text
-        style: plain
-        template: <{{ if .Root }}lightRed{{ else }}green{{ end }}>╭─</>
+      # - type: text
+      #   style: plain
+      #   template: <{{ if .Root }}lightRed{{ else }}green{{ end }}>╭─</>
 
       - type: os
         style: plain
         foreground: lightBlue
         foreground_templates:
           - "{{ if .Root }}lightRed{{ end }}"
-        template: "<{{ if .Root }}lightRed{{ else }}green{{ end }}></>{{ if .WSL }}WSL at {{ end }}{{.Icon}}<{{ if .Root }}lightRed{{ else }}green{{ end }}></>"
+        template: "<{{ if .Root }}lightRed{{ else }}green{{ end }}>(</>{{ if .WSL }}WSL at {{ end }}{{.Icon}}<{{ if .Root }}lightRed{{ else }}green{{ end }}>)</>"
 
       - type: session
         style: plain
@@ -62,14 +62,14 @@ blocks:
       - type: kubectl
         style: plain
         foreground: lightBlue
-        template: "<{{ if .Root }}lightRed{{ else }}green{{ end }}>(</>ﴱ {{if .Context}}{{.Context}} / {{end}}{{if .Cluster}}{{.Cluster}} / {{end}}{{if .Namespace}}{{.Namespace}}{{end}}<{{ if .Root }}lightRed{{ else }}green{{ end }}>)</>"
+        template: "<{{ if .Root }}lightRed{{ else }}green{{ end }}>(</>ﴱ {{if .Context}}{{.Context}} / {{end}}{{if .Cluster}}{{.Cluster}} / {{end}}{{if .Namespace}}{{.Namespace}}{{end}}<{{ if .Root }}lightRed{{ else }}green{{ end }}>)-</>"
 
       - type: session
         style: plain
         foreground: lightBlue
         foreground_templates:
           - "{{ if .Root }}lightRed{{ end }}"
-        template: "{{ if .SSHSession }}<{{ if .Root }}lightRed{{ else }}green{{ end }}>-(</>SSH<{{ if .Root }}lightRed{{ else }}green{{ end }}>)─</>{{ end }}"
+        template: "{{ if .SSHSession }}<{{ if .Root }}lightRed{{ else }}green{{ end }}>(</>SSH<{{ if .Root }}lightRed{{ else }}green{{ end }}>)─</>{{ end }}"
 
       - type: battery
         style: plain
@@ -81,7 +81,7 @@ blocks:
           charging_icon: 
           discharging_icon: 
           charged_icon: 
-        template: "<{{ if .Root }}lightRed{{ else }}green{{ end }}>-(</>{{ .Icon }}{{ .Percentage }}<{{ if .Root }}lightRed{{ else }}green{{ end }}>)─</>"
+        template: "<{{ if .Root }}lightRed{{ else }}green{{ end }}>(</>{{ .Icon }}{{ .Percentage }}<{{ if .Root }}lightRed{{ else }}green{{ end }}>)─</>"
 
       - type: executiontime
         style: plain
@@ -91,7 +91,7 @@ blocks:
         properties:
           always_enabled: true
           style: round
-        template: "<{{ if .Root }}lightRed{{ else }}green{{ end }}>-(</>{{ .FormattedMs }}<{{ if .Root }}lightRed{{ else }}green{{ end }}>)─</>"
+        template: "<{{ if .Root }}lightRed{{ else }}green{{ end }}>(</>{{ .FormattedMs }}<{{ if .Root }}lightRed{{ else }}green{{ end }}>)─</>"
 
       - type: exit
         style: plain
@@ -118,7 +118,7 @@ blocks:
           fetch_worktree_count: true
           fetch_upstream_icon: true
           branch_max_length: 0
-        template: "<{{ if .Root }}lightRed{{ else }}green{{ end }}>╰─[</>{{ .UpstreamIcon }}{{ .HEAD }}{{ .BranchStatus }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}<{{ if .Root }}lightRed{{ else }}green{{ end }}>]</>"
+        template: "<{{ if .Root }}lightRed{{ else }}green{{ end }}>(</>{{ .UpstreamIcon }}{{ .HEAD }}{{ .BranchStatus }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}<{{ if .Root }}lightRed{{ else }}green{{ end }}>)</>"
 
   # Left prompt third line
   - type: prompt
