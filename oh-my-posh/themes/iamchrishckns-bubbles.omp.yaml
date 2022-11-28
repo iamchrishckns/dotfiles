@@ -1,10 +1,23 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
 version: 2
 
+#
+# Colors: https://htmlcolorcodes.com/color-chart/material-design-color-chart/
+#
+
+palette:
+  background: "#4A148C"
+  text: "white"
+  background_alt: "#7B1FA2"
+  root: "#D50000"
+
+  prompt: "white"
+  kubernetes: "#2962FF"
+
 transient_prompt:
-  foreground: lightBlue
+  foreground: "p:prompt"
   foreground_templates:
-    - "{{ if .Root }}lightRed{{ end }}"
+    - "{{ if .Root }}p:root{{ end }}"
   template: " "
 
 blocks:
@@ -16,18 +29,18 @@ blocks:
         style: diamond
         leading_diamond: ""
         trailing_diamond: " "
-        foreground: black
-        background: lightBlue
+        foreground: "p:text"
+        background: "p:background"
         template: "{{ if .WSL }}WSL at {{ end }}{{.Icon}}"
 
       - type: session
         style: diamond
         leading_diamond: ""
         trailing_diamond: " "
-        foreground: black
-        background: lightBlue
+        foreground: "p:text"
+        background: "p:background"
         background_templates:
-          - "{{ if .Root }}lightRed{{ end }}"
+          - "{{ if .Root }}p:root{{ end }}"
         properties:
           display_host: true
         template: "{{ if .SSHSession }}(SSH) {{ end }}{{ .UserName }} on {{ lower .HostName }}"
@@ -36,10 +49,10 @@ blocks:
         style: diamond
         leading_diamond: ""
         trailing_diamond: ""
-        foreground: black
-        background: magenta
+        foreground: "p:text"
+        background: "p:background"
         properties:
-          style: full
+          style: agnoster_short
         template: "{{ path .Path .Location }}"
 
   # Right prompt first line
@@ -51,8 +64,8 @@ blocks:
         style: diamond
         leading_diamond: ""
         trailing_diamond: " "
-        foreground: black
-        background: lightBlue
+        foreground: "p:text"
+        background: "p:kubernetes"
         properties:
           parse_kubeconfig: true
         template: "{{if .Context}}ﴱ {{.Context}}{{end}}{{if .Cluster}} / {{.Cluster}}{{end}}{{if .Namespace}} / {{.Namespace}}{{end}}"
@@ -61,8 +74,8 @@ blocks:
         style: diamond
         leading_diamond: ""
         trailing_diamond: " "
-        foreground: black
-        background: lightBlue
+        foreground: "p:text"
+        background: "p:background"
         properties:
           display_error: false
           charging_icon: 
@@ -77,7 +90,7 @@ blocks:
     segments:
       - type: text
         style: plain
-        foreground: lightBlue
+        foreground: "p:prompt"
         foreground_templates:
-          - "{{ if .Root }}lightRed{{ end }}"
+          - "{{ if .Root }}p:root{{ end }}"
         template: " "
