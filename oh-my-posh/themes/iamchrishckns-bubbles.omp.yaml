@@ -1,0 +1,83 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+version: 2
+
+transient_prompt:
+  foreground: lightBlue
+  foreground_templates:
+    - "{{ if .Root }}lightRed{{ end }}"
+  template: " "
+
+blocks:
+  # Left prompt first line
+  - type: prompt
+    alignment: left
+    segments:
+      - type: os
+        style: diamond
+        leading_diamond: ""
+        trailing_diamond: " "
+        foreground: black
+        background: lightBlue
+        template: "{{ if .WSL }}WSL at {{ end }}{{.Icon}}"
+
+      - type: session
+        style: diamond
+        leading_diamond: ""
+        trailing_diamond: " "
+        foreground: black
+        background: lightBlue
+        background_templates:
+          - "{{ if .Root }}lightRed{{ end }}"
+        properties:
+          display_host: true
+        template: "{{ if .SSHSession }}(SSH) {{ end }}{{ .UserName }} on {{ lower .HostName }}"
+
+      - type: path
+        style: diamond
+        leading_diamond: ""
+        trailing_diamond: ""
+        foreground: black
+        background: magenta
+        properties:
+          style: full
+        template: "{{ path .Path .Location }}"
+
+  # Right prompt first line
+  - type: prompt
+    alignment: right
+    filler: "  "
+    segments:
+      - type: kubectl
+        style: diamond
+        leading_diamond: ""
+        trailing_diamond: " "
+        foreground: black
+        background: lightBlue
+        properties:
+          parse_kubeconfig: true
+        template: "{{if .Context}}ﴱ {{.Context}}{{end}}{{if .Cluster}} / {{.Cluster}}{{end}}{{if .Namespace}} / {{.Namespace}}{{end}}"
+
+      - type: battery
+        style: diamond
+        leading_diamond: ""
+        trailing_diamond: " "
+        foreground: black
+        background: lightBlue
+        properties:
+          display_error: false
+          charging_icon: 
+          discharging_icon: 
+          charged_icon: 
+        template: "{{ .Icon }}{{ .Percentage }}"
+
+  # Left prompt third line
+  - type: prompt
+    alignment: left
+    newline: true
+    segments:
+      - type: text
+        style: plain
+        foreground: lightBlue
+        foreground_templates:
+          - "{{ if .Root }}lightRed{{ end }}"
+        template: " "
