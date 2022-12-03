@@ -47,10 +47,20 @@ blocks:
 
       - type: path
         style: plain
+        min_width: 100
         foreground: p:textAlt
         properties:
           folder_separator_icon: <#c0c0c0>/</>
           style: full
+        template: <p:accent>-(</>{{ .Path }}<p:accent>)</>
+
+      - type: path
+        style: plain
+        max_width: 100
+        foreground: p:textAlt
+        properties:
+          folder_separator_icon: <#c0c0c0>/</>
+          style: agnoster_short
         template: <p:accent>-(</>{{ .Path }}<p:accent>)</>
 
   # Right prompt first line
