@@ -21,38 +21,37 @@ transient_prompt:
 # black    red      green      yellow      blue      magenta      cyan      white
 # darkGray lightRed lightGreen lightYellow lightBlue lightMagenta lightCyan lightWhite
 
+palette:
+  text: lightBlue
+  textAlt: magenta
+  textRoot: red
+  textKubernetes: "#40C4FF"
+  accent: "#00C853"
+
 blocks:
   # Left prompt first line
   - type: prompt
     alignment: left
     segments:
-      # - type: text
-      #   style: plain
-      #   template: <{{ if .Root }}lightRed{{ else }}green{{ end }}>╭─</>
-
       - type: os
         style: plain
-        foreground: lightBlue
-        foreground_templates:
-          - "{{ if .Root }}lightRed{{ end }}"
-        template: "<{{ if .Root }}lightRed{{ else }}green{{ end }}>(</>{{ if .WSL }}WSL at {{ end }}{{.Icon}}<{{ if .Root }}lightRed{{ else }}green{{ end }}>)</>"
+        foreground: p:text
+        template: "<p:accent>(</>{{ if .WSL }}WSL at {{ end }}{{.Icon}}<p:accent>)</>"
 
       - type: session
         style: plain
-        foreground: lightBlue
+        foreground: p:text
         foreground_templates:
-          - "{{ if .Root }}lightRed{{ end }}"
-        properties:
-          display_host: true
-        template: "<{{ if .Root }}lightRed{{ else }}green{{ end }}>─(</>{{ .UserName }} on {{ .HostName }}<{{ if .Root }}lightRed{{ else }}green{{ end }}>)</>"
+          - "{{ if .Root }}p:textRoot{{ end }}"
+        template: "<p:accent>─(</>{{ .UserName }} on {{ .HostName }}<p:accent>)</>"
 
       - type: path
         style: plain
-        foreground: magenta
+        foreground: p:textAlt
         properties:
           folder_separator_icon: <#c0c0c0>/</>
           style: full
-        template: <{{ if .Root }}lightRed{{ else }}green{{ end }}>-(</>{{ .Path }}<{{ if .Root }}lightRed{{ else }}green{{ end }}>)</>
+        template: <p:accent>-(</>{{ .Path }}<p:accent>)</>
 
   # Right prompt first line
   - type: prompt
@@ -61,46 +60,31 @@ blocks:
     segments:
       - type: kubectl
         style: plain
-        foreground: lightBlue
-        template: "<{{ if .Root }}lightRed{{ else }}green{{ end }}>(</>ﴱ {{if .Context}}{{.Context}} / {{end}}{{if .Cluster}}{{.Cluster}} / {{end}}{{if .Namespace}}{{.Namespace}}{{end}}<{{ if .Root }}lightRed{{ else }}green{{ end }}>)-</>"
+        min_width: 80
+        foreground: p:textKubernetes
+        foreground_templates:
+          - '{{if contains "prod" .Context}}red{{end}}'
+        properties:
+          parse_kubeconfig: true
+        template: "<p:accent>(</>{{if .Context}}ﴱ {{.Context}}{{end}}{{if .Namespace}} <p:accent>{{.Namespace}}</>{{end}}{{if .Cluster}} @ {{.Cluster}}{{end}}<p:accent>)</>"
 
       - type: session
         style: plain
-        foreground: lightBlue
-        foreground_templates:
-          - "{{ if .Root }}lightRed{{ end }}"
-        template: "{{ if .SSHSession }}<{{ if .Root }}lightRed{{ else }}green{{ end }}>(</>SSH<{{ if .Root }}lightRed{{ else }}green{{ end }}>)─</>{{ end }}"
+        foreground: p:text
+        template: "{{ if .SSHSession }}<p:accent>-(</>SSH<p:accent>)</>{{ end }}"
 
       - type: battery
         style: plain
-        foreground: lightBlue
+        foreground: p:text
         foreground_templates:
-          - "{{ if .Root }}lightRed{{ end }}"
+          - '{{if eq "Charging" .State.String}}#40c4ff{{end}}'
+          - '{{if eq "Discharging" .State.String}}#ff5722{{end}}'
+          - '{{if eq "Full" .State.String}}#4caf50{{end}}'
         properties:
-          display_error: false
           charging_icon: 
           discharging_icon: 
           charged_icon: 
-        template: "<{{ if .Root }}lightRed{{ else }}green{{ end }}>(</>{{ .Icon }}{{ .Percentage }}<{{ if .Root }}lightRed{{ else }}green{{ end }}>)─</>"
-
-      - type: executiontime
-        style: plain
-        foreground: lightBlue
-        foreground_templates:
-          - "{{ if .Root }}lightRed{{ end }}"
-        properties:
-          always_enabled: true
-          style: round
-        template: "<{{ if .Root }}lightRed{{ else }}green{{ end }}>(</>{{ .FormattedMs }}<{{ if .Root }}lightRed{{ else }}green{{ end }}>)─</>"
-
-      - type: exit
-        style: plain
-        foreground: green
-        foreground_templates:
-          - "{{ if gt .Code 0 }}red{{ end }}"
-        properties:
-          always_enabled: true
-        template: "<{{ if .Root }}lightRed{{ else }}green{{ end }}>(</>{{ if gt .Code 0 }}⨯{{else}}✓{{ end }}<{{ if .Root }}lightRed{{ else }}green{{ end }}>)</>"
+        template: "<p:accent>-(</>{{ .Icon }} {{ .Percentage }}<p:accent>)</>"
 
   # Left prompt second line
   - type: prompt
@@ -109,28 +93,23 @@ blocks:
     segments:
       - type: git
         style: plain
-        foreground: lightBlue
-        foreground_templates:
-          - "{{ if .Root }}lightRed{{ end }}"
+        foreground: p:text
         properties:
           fetch_status: true
           fetch_stash_count: true
           fetch_worktree_count: true
           fetch_upstream_icon: true
           branch_max_length: 0
-        template: "<{{ if .Root }}lightRed{{ else }}green{{ end }}>(</>{{ .UpstreamIcon }}{{ .HEAD }}{{ .BranchStatus }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}<{{ if .Root }}lightRed{{ else }}green{{ end }}>)</>"
+        template: "<p:accent>(</>{{ .UpstreamIcon }}{{ .HEAD }}{{ .BranchStatus }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}<p:accent>)</>"
 
   # Left prompt third line
   - type: prompt
     alignment: left
     newline: true
     segments:
-      # - type: text
-      #   style: plain
-      #   template: "<{{ if .Root }}lightRed{{ else }}green{{ end }}>╰─( </>"
-
       - type: text
         style: plain
-        foreground: lightBlue
-        # template: "{{ if .Root }}<lightRed>ﬦ </>{{ else }}ﬦ {{ end }}"
-        template: "{{ if .Root }}<lightRed></>{{ else }}{{ end }} "
+        foreground: p:text
+        foreground_templates:
+          - "{{ if .Root }}p:textRoot{{ end }}"
+        template: " "
