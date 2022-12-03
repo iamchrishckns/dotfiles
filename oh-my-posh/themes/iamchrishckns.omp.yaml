@@ -1,9 +1,4 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
-version: 2
-
-transient_prompt:
-  # template: "{{ if .Root }}<lightRed>ﬦ</>{{ else }}<lightBlue>ﬦ</>{{ end }} "
-  template: "{{ if .Root }}<lightRed></>{{ else }}<lightBlue></>{{ end }} "
 
 # ANSI Borders
 # ┌──┬──┐ ╭╮
@@ -21,12 +16,17 @@ transient_prompt:
 # black    red      green      yellow      blue      magenta      cyan      white
 # darkGray lightRed lightGreen lightYellow lightBlue lightMagenta lightCyan lightWhite
 
+version: 2
+
 palette:
   text: lightBlue
   textAlt: magenta
   textRoot: red
   textKubernetes: "#40C4FF"
   accent: "#00C853"
+
+transient_prompt:
+  template: "{{ if .Root }}<p:textRoot></>{{ else }}<p:text></>{{ end }} "
 
 blocks:
   # Left prompt first line
@@ -60,26 +60,33 @@ blocks:
     segments:
       - type: kubectl
         style: plain
+        alias: "Kubectl"
         min_width: 80
         foreground: p:textKubernetes
         foreground_templates:
-          - '{{if contains "prod" .Context}}red{{end}}'
+          - "{{ if contains 'prod' .Context }}red{{ end }}"
         properties:
           parse_kubeconfig: true
-        template: "<p:accent>(</>{{if .Context}}ﴱ {{.Context}}{{end}}{{if .Namespace}} <p:accent>{{.Namespace}}</>{{end}}{{if .Cluster}} @ {{.Cluster}}{{end}}<p:accent>)</>"
+        templates:
+          - "<p:accent>(</>"
+          - "{{ if .Context }}ﴱ {{ .Context }}{{ end }}"
+          - "{{ if .Namespace }} <p:accent>{{.Namespace}}</>{{ end }}"
+          - "{{ if .Cluster }} @ {{ .Cluster }}{{ end }}"
+          - "<p:accent>)</>"
 
       - type: session
         style: plain
         foreground: p:text
-        template: "{{ if .SSHSession }}<p:accent>-(</>SSH<p:accent>)</>{{ end }}"
+        template: "{{ if .SSHSession }}<p:accent>{{ if .Segments.Kubectl.Output }}-{{ end }}(</>SSH<p:accent>)</>{{ end }}"
 
       - type: battery
         style: plain
+        min_width: 80
         foreground: p:text
         foreground_templates:
-          - '{{if eq "Charging" .State.String}}#40c4ff{{end}}'
-          - '{{if eq "Discharging" .State.String}}#ff5722{{end}}'
-          - '{{if eq "Full" .State.String}}#4caf50{{end}}'
+          - "{{if eq 'Charging' .State.String}}#40c4ff{{end}}"
+          - "{{if eq 'Discharging' .State.String}}#ff5722{{end}}"
+          - "{{if eq 'Full' .State.String}}#4caf50{{end}}"
         properties:
           charging_icon: 
           discharging_icon: 
@@ -100,7 +107,14 @@ blocks:
           fetch_worktree_count: true
           fetch_upstream_icon: true
           branch_max_length: 0
-        template: "<p:accent>(</>{{ .UpstreamIcon }}{{ .HEAD }}{{ .BranchStatus }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}<p:accent>)</>"
+        templates:
+          - "<p:accent>(</>"
+          - "{{ .UpstreamIcon }}{{ .HEAD }}{{ .BranchStatus }}"
+          - "{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}"
+          - "{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}"
+          - "{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}"
+          - "{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}"
+          - "<p:accent>)</>"
 
   # Left prompt third line
   - type: prompt
