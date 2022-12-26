@@ -1,6 +1,6 @@
 # Neovim
 
-## Keys
+## Custom Keybinds
 
 Leader = Space
 

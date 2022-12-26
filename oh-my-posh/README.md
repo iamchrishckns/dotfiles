@@ -2,7 +2,7 @@
   <h1 align="center"><b>Oh My Posh</h1>
 </p>
 
-I created my own theme which is a mix of [multiple themes from the offical docs](https://ohmyposh.dev/docs/themes).
+I created my own theme which is a mix of [multiple themes from the offical docs](https://ohmyposh.dev/docs/themes) adjusted for my needs.
 
 You can find it [here](themes/iamchrishckns.omp.yaml).
 

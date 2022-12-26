@@ -32,6 +32,14 @@ My `prefix` is `C` `Space`
 - `<prefix>` `Tab` previous window
 - `F12` toggle keymap between local and remote
 
+## Installation
+
+```bash
+ln -s /home/christoph/dotfiles/tmux/.tmux.conf /home/christoph/.tmux.conf
+ln -s /home/christoph/dotfiles/tmux/.tmux.conf.local /home/christoph/.tmux.conf.local
+ln -s /home/christoph/dotfiles/tmux/.tmux.conf.remote /home/christoph/.tmux.conf.remote
+```
+
 ## If you need some resources
 
 Github:
@@ -52,6 +60,7 @@ YouTube:
 - [LearnLinuxTV (Playlist): Getting Started with tmux](https://www.youtube.com/playlist?list=PLT98CRl2KxKGiyV1u6wHDV8VwcQdzfuKe)
 - [Nick Janetakis: A Productive Linux Development Environment on Windows with WSL, Docker, tmux, VSCode and More](https://www.youtube.com/watch?v=5gu8wWX3Ob4)
 - [Conference in the Cloud! A Perl and Raku Conf: Doug Bell - "Organized Development With tmux"](https://www.youtube.com/watch?v=o7Dg1kmjhfQ)
+- [media.ccc.de: GPN18 - tmux - Warum ein schwarzes Fenster am Bildschirm reicht](https://www.youtube.com/watch?v=JhKXOYepX2E)
 
 Other:
 
