@@ -1,12 +1,12 @@
-# Firefox Setup
+# Firefox
 
-[Profile Manager - Create, remove or switch Firefox profiles](https://support.mozilla.org/en-US/kb/profile-manager-create-remove-switch-firefox-profiles)
+Open Firefox with profile selector: `firefox -p`
 
-Open Firefox with Profile Selector: `firefox -p`
+Open Firefox with profile by name: `firefox -no-remote -p $Profile`
 
-Open Firefox with Profile by Name: `firefox -no-remote -p $Profile`
+Firefox profiles can be managed by visiting [about:profiles](about:profiles). More information can be found on the official Mozilla support page [Profile Manager - Create, remove or switch Firefox profiles](https://support.mozilla.org/en-US/kb/profile-manager-create-remove-switch-firefox-profiles).
 
-## Profile Settings with user.js
+## Profile settings with user.js
 
 Copy the [user.js](user.js) file to the root directory of your Firefox profile. To find the root directory for a profile you can visit [about:profiles](about:profiles).
 

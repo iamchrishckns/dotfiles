@@ -8,14 +8,12 @@ Right now there is no automatic installation script or something like that, mayb
 
 ## Available configs
 
-### TMUX
+Applications:
 
-[More info](tmux/) on my configuration.
+- [Firefox](firefox/) - My Firefox defaults and multiple profiles configuration
 
-### Oh My Posh
-
-Right now I use [Oh My Posh](https://github.com/jandedobbeleer/oh-my-posh) as my main prompt.
-
-> Oh My Posh is a prompt theme engine for any shell written in go.
-
-[More info](oh-my-posh/) on my configuration.
+CLI Tools:
+- [TMUX](tmux/) - My terminal multiplexer of choice
+- [Neovim](nvim/) - My configs (WIP)
+- [Oh My Posh](oh-my-posh/) - My favorite cross-platform shell prompt for Windows, Linux and MacOS
+- [ZSH](zsh/) - My configs, aliases and functions (WIP)
