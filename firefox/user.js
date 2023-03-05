@@ -9,7 +9,7 @@ user_pref("layout.spellcheckDefault", 0); // General > Language > Check your spe
 user_pref("browser.download.useDownloadDir", false); // General > Files and Applications > Always ask you where to save files
 
 // Home
-user_pref("browser.startup.homepage", "chrome://browser/content/blanktab.html"); // Home > New Windows and Tabs > Homepage and new windows
+user_pref("browser.startup.homepage", "https://duckduckgo.com"); // Home > New Windows and Tabs > Homepage and new windows
 user_pref("browser.newtabpage.enabled", false); // Home > New Windows and Tabs > New tabs > Blank Page
 user_pref("browser.newtabpage.activity-stream.showSearch", false); // Home > Firefox Home Content > Web Search
 user_pref("browser.newtabpage.activity-stream.feeds.topsites", false); // Home > Firefox Home Content > Shortcuts
