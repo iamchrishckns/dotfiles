@@ -2,9 +2,9 @@
 
 [Profile Manager - Create, remove or switch Firefox profiles](https://support.mozilla.org/en-US/kb/profile-manager-create-remove-switch-firefox-profiles)
 
-Open Firefox with Profile Selector: `firefox -P`
+Open Firefox with Profile Selector: `firefox -p`
 
-Open Firefox with Profile by Name: `firefox -P $Profile`
+Open Firefox with Profile by Name: `firefox -no-remote -p $Profile`
 
 ## Profile Settings with user.js
 

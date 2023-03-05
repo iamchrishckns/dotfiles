@@ -46,3 +46,4 @@ user_pref("browser.formfill.enable", false);
 user_pref("extensions.formautofill.addresses.enabled", false);
 user_pref("browser.shell.checkDefaultBrowser", false);
 user_pref("browser.toolbars.bookmarks.visibility", "always");
+user_pref("taskbar.grouping.useprofile", true); // Allow different use profiles to have their own taskbar group
