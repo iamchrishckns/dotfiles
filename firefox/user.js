@@ -44,3 +44,5 @@ user_pref("browser.aboutConfig.showWarning", false);
 user_pref("extensions.pocket.enabled", false);
 user_pref("browser.formfill.enable", false);
 user_pref("extensions.formautofill.addresses.enabled", false);
+user_pref("browser.shell.checkDefaultBrowser", false);
+user_pref("browser.toolbars.bookmarks.visibility", "always");
