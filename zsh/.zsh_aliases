@@ -25,4 +25,12 @@ alias dc='docker compose'
 
 # kubernetes
 alias k='kubectl'
+
+alias wano='watch "kubectl get nodes"'
+alias wanow='watch "kubectl get nodes -o wide"'
+alias wapo='watch "kubectl get pods"'
+alias wapow='watch "kubectl get pods -o wide"'
+
+# helm
 alias h='helm'
+alias hls='helm ls'
