@@ -1,0 +1,28 @@
+# general
+alias sido='sudo' # yes... don't judge...
+
+# ls
+alias ls='ls -h --color=auto'
+alias ll='ls -lh --color=auto'
+alias la='ls -lah --color=auto'
+
+# grep
+alias grep='grep --color=auto'
+alias g='grep --color=auto'
+
+# tmux
+alias tmux='tmux -u'
+alias t='tmux -u'
+alias ta='tmux -u a'
+alias tls='tmux -u ls'
+
+# tree
+alias tree='tree -pugsh --du'
+
+# docker 
+alias d='docker'
+alias dc='docker compose'
+
+# kubernetes
+alias k='kubectl'
+alias h='helm'
