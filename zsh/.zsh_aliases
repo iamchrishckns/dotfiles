@@ -10,6 +10,12 @@ alias la='ls -lah --color=auto'
 alias grep='grep --color=auto'
 alias g='grep --color=auto'
 
+# watch
+alias watch='watch --color'
+
+# tree
+alias tree='tree -C -pugsh --du'
+
 # tmux
 alias tmux='tmux -u'
 alias t='tmux -u'
