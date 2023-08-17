@@ -24,6 +24,7 @@ alias tls='tmux -u ls'
 
 # tree
 alias tree='tree -pugsh --du'
+alias wtree='watch --color "tree -pugsh --du"'
 
 # docker 
 alias d='docker'
