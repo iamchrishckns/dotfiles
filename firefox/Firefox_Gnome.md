@@ -5,7 +5,7 @@
 ### Firefox shortcut 
 
 
-Replace $name everywhen with the profile name
+Replace $name everywhere with the profile name
 
 Filename: `~/.local/share/applications/firefox-$name.desktop`
 
