@@ -48,3 +48,17 @@ user_pref("browser.shell.checkDefaultBrowser", false);
 user_pref("browser.toolbars.bookmarks.visibility", "always");
 user_pref("taskbar.grouping.useprofile", true); // Allow different use profiles to have their own taskbar group
 user_pref("media.hardwaremediakeys.enabled", false); // Disbale media control keys
+user_pref("browser.ml.chat.enabled", false);
+user_pref("browser.tabs.inTitlebar", 1);
+user_pref("browser.tabs.warnOnClose", true);
+
+// Profiles
+user_pref("browser.profiles.enabled", true);
+user_pref("browser.profiles.profile-name.updated", true);
+
+// Tab Groups
+user_pref("browser.tabs.groups.enabled", true);
+
+// New Sidebar
+user_pref("sidebar.revamp", true);
+user_pref("sidebar.visibility", "hide-sidebar");
