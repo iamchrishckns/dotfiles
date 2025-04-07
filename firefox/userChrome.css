@@ -1,0 +1,4 @@
+/* Hide x in active tab */
+.tab-close-button {
+    display: none;
+}
