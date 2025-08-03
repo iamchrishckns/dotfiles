@@ -1,0 +1,23 @@
+function reload_zsh() {
+  echo "Reloading zsh configuration..."
+  source $HOME/.zshrc
+  echo "Zsh configuration reloaded."
+}
+
+function check_git_config() {
+  echo "Checking git config... \n"
+  echo "Global git config:"
+  echo "User Name: $(git config --global user.name)"
+  echo "User Email: $(git config --global user.email)"
+
+  echo ""
+
+  inside_git_repository=$(git stsatus 2>/dev/null)
+  if [ $? -eq 0 ]; then
+    echo "Local git config:"
+    echo "User Name: $(git config --local user.name)"
+    echo "User Email: $(git config --local user.email)"
+  else 
+    echo "Not inside a git repository. Skipping local git config check."
+  fi
+}
