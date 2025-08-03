@@ -16,7 +16,7 @@
 # black    red      green      yellow      blue      magenta      cyan      white
 # darkGray lightRed lightGreen lightYellow lightBlue lightMagenta lightCyan lightWhite
 
-version: 2
+version: 3
 
 palette:
   text: lightBlue
