@@ -62,14 +62,17 @@ I use this instead of the original version of [Cascadia Code](https://github.com
 
 ### Devbox
 
-When using a [devbox]() you can set the environment variable `OMP_DEVBOX_NAME` to a name that will be displayed in the prompt next to the `Devbox` segment.
+When using a [devbox](https://github.com/jetify-com/devbox) you can set the environment variable `OMP_DEVBOX_NAME` to a name that will be displayed in the prompt next to the `Devbox` segment.
+This segment is only visible when the `DEVBOX_SHELL_ENABLED` is set to 1. This happens automatically when running `devbox shell`.
 
 ```json
 {
   "env": {
-      "OMP_DEVBOX_NAME": "TrackMate"
+      "OMP_DEVBOX_NAME": "SomeDevboxName"
   }
-
 }
 ```
 
+```bash
+(󱄅 Devbox - SomeDevboxName)
+```
