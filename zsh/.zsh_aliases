@@ -7,8 +7,8 @@ alias ll='ls -lh --color=auto'
 alias la='ls -lah --color=auto'
 
 # grep
-alias grep='grep --color=auto'
-alias g='grep --color=auto'
+alias grep='grep -i --color=auto'
+alias g='grep -i --color=auto'
 
 # watch
 alias watch='watch --color'

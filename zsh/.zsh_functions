@@ -21,3 +21,7 @@ function check_git_config() {
     echo "Not inside a git repository. Skipping local git config check."
   fi
 }
+
+function edit_php_ini() {
+  php --ini | head -n 1 | awk '{ print $5}' | xargs -I {} $EDITOR '{}/php.ini'
+}
