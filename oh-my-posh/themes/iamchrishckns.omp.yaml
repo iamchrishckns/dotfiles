@@ -68,6 +68,12 @@ blocks:
     alignment: right
     filler: "  "
     segments:
+      - type: text
+        style: plain
+        foreground: p:text
+        template: "{{ if .Env.DEVBOX_SHELL_ENABLED }}<p:accent>(</>󱄅 Devbox {{ if .Env.OMP_DEVBOX_NAME }}- {{ .Env.OMP_DEVBOX_NAME }}{{ end }}<p:accent>)</>{{ end }}"
+
+
       - type: kubectl
         style: plain
         alias: "Kubectl"
