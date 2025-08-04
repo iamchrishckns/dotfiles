@@ -57,3 +57,19 @@ I use this instead of the original version of [Cascadia Code](https://github.com
 [Cascadia Code](https://github.com/microsoft/cascadia-code) is a open source monospaced font from Microsoft.
 
 ~~My favorite [Nerd Font](https://www.nerdfonts.com/) which I use almost everywhere is "Caskaydia Cove Nerd Font" which is based on the open source monospaced font "[Cascadia Code](https://github.com/microsoft/cascadia-code)" from Microsoft.~~
+
+## Customizations
+
+### Devbox
+
+When using a [devbox]() you can set the environment variable `OMP_DEVBOX_NAME` to a name that will be displayed in the prompt next to the `Devbox` segment.
+
+```json
+{
+  "env": {
+      "OMP_DEVBOX_NAME": "TrackMate"
+  }
+
+}
+```
+
