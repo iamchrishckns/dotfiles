@@ -1,6 +1,9 @@
 # general
 alias sido='sudo' # yes... don't judge...
 
+alias ..='cd ..'
+alias ...='cd ../..'
+
 # ls
 alias ls='ls -h --color=auto'
 alias ll='ls -lh --color=auto'
@@ -26,6 +29,13 @@ alias tls='tmux -u ls'
 alias tree='tree -pugsh --du'
 alias wtree='watch --color "tree -pugsh --du"'
 
+# mkdir
+alias mkdir='mkdir -p'
+
+# homebrew
+alias brewup='brew update && brew upgrade'
+alias brewclean='brew cleanup'
+
 # docker 
 alias d='docker'
 alias dc='docker compose'
@@ -41,3 +51,19 @@ alias wapow='watch "kubectl get pods -o wide"'
 # helm
 alias h='helm'
 alias hls='helm ls'
+
+# nodejs
+alias n='node'
+
+# pnpm
+alias pnpmdev='pnpm run dev'
+
+# go
+alias g='go'
+
+# php
+alias p='php'
+
+# laravel
+alias l='php artisan'
+alias ldev='php artisan serve'

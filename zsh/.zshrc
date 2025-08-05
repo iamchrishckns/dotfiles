@@ -1,15 +1,28 @@
+### ################################# ###
+###                                   ###
+###   Christoph's ZSH Configuration   ###
+###                                   ###
+### ################################# ###
+
+# ZSH configuration 
+CASE_SENSITIVE=false
+
 HISTFILE=~/.histfile
 HISTSIZE=1000000
 SAVEHIST=1000000
 
+# Set the default editor
 export EDITOR=nvim
 
+# Source custom aliases and functions
 source $HOME/.zsh_aliases
 source $HOME/.zsh_functions
 
 # Homebrew
 if command -v brew >/dev/null 2>&1
 then
+  export HOMEBREW_NO_ANALYTICS=1
+
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
@@ -28,9 +41,12 @@ then
 fi
 
 # LMStudio
-if command -v lms >/dev/null 2>&1
+export PATH="$PATH:/Users/christoph/.lmstudio/bin"
+
+# NPM
+if command -v npm >/dev/null 2>&1
 then
-  export PATH="$PATH:/Users/christoph/.lmstudio/bin"
+  source <(npm completion)
 fi
 
 autoload -Uz compinit

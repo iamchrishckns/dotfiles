@@ -25,3 +25,32 @@ function check_git_config() {
 function edit_php_ini() {
   php --ini | head -n 1 | awk '{ print $5}' | xargs -I {} $EDITOR '{}/php.ini'
 }
+
+function mkcd() {
+  # No -p since we have it already in the aliases
+  mkdir "$1" 
+  cd "$1"
+}
+
+function install_laravel() {
+  if ! command -v php >/dev/null 2>&1; then
+    echo "PHP is not installed. Please install PHP first."
+    return 1
+  fi
+
+  if ! command -v composer >/dev/null 2>&1; then
+    echo "Composer is not installed. Please install Composer first."
+    return 1
+  fi
+
+  composer global require laravel/installer
+}
+
+function install_cobra_cli() {
+  if ! command -v go >/dev/null 2>&1; then
+    echo "Go is not installed. Please install Go first."
+    return 1
+  fi
+
+  go install github.com/spf13/cobra-cli@latest
+}
