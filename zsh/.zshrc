@@ -49,5 +49,18 @@ then
   source <(npm completion)
 fi
 
+# PNPM
+if command -v pnpm >/dev/null 2>&1
+then
+  source <(pnpm completion zsh)
+
+  export PNPM_HOME="/Users/christoph/Library/pnpm"
+
+  case ":$PATH:" in
+    *":$PNPM_HOME:"*) ;;
+    *) export PATH="$PNPM_HOME:$PATH" ;;
+  esac
+fi  
+
 autoload -Uz compinit
 compinit
