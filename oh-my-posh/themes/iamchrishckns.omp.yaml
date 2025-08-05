@@ -26,7 +26,7 @@ palette:
   accent: "#00C853"
 
 transient_prompt:
-  template: "{{ if .Root }}<p:textRoot></>{{ else }}<p:text></>{{ end }} "
+  template: "{{ if .Root }}<p:textRoot>󰄾</>{{ else }}<p:text>󰄾</>{{ end }} "
 
 blocks:
   # Left prompt first line
@@ -142,4 +142,4 @@ blocks:
         foreground: p:text
         foreground_templates:
           - "{{ if .Root }}p:textRoot{{ end }}"
-        template: " "
+        template: "󰄾 "
