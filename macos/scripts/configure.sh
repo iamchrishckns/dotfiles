@@ -31,6 +31,9 @@ defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
 defaults write NSGlobalDomain KeyRepeat -int 1
 defaults write NSGlobalDomain InitialKeyRepeat -int 10
 
+# Drag windows anywhere with cmd + ctrl
+defaults write -g NSWindowShouldDragOnGesture -bool true
+
 ### #######################################################
 ### Finder
 ### #######################################################
@@ -42,7 +45,7 @@ defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
 # Finder: show hidden files by default
-#defaults write com.apple.finder AppleShowAllFiles -bool true
+defaults write com.apple.finder AppleShowAllFiles -bool true
 
 # Finder: show all filename extensions
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
@@ -92,9 +95,8 @@ defaults write com.apple.dock autohide -bool true
 # Don’t show recent applications in Dock
 defaults write com.apple.dock show-recents -bool false
 
-
 ### #######################################################
-### Time Machone
+### Time Machine
 ### #######################################################
 
 # Prevent Time Machine from prompting to use new hard drives as backup volume
