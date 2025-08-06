@@ -85,7 +85,7 @@ blocks:
           parse_kubeconfig: true
         templates:
           - "<p:accent>(</>"
-          - "{{ if .Context }}ﴱ {{ .Context }}{{ end }}"
+          - "{{ if .Context }}󱃾 {{ .Context }}{{ end }}"
           - "{{ if .Namespace }} <p:accent>{{.Namespace}}</>{{ end }}"
           - "{{ if .Cluster }} @ {{ .Cluster }}{{ end }}"
           - "<p:accent>)</>"
