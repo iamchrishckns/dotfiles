@@ -5,12 +5,11 @@
 ### ################################# ###
 
 # ZSH configuration 
-CASE_SENSITIVE=false
-
 export HISTFILE=~/.zsh_history
 export HISTFILESIZE=1000000000
 export HISTSIZE=1000000000
 export HISTTIMEFORMAT="[%F %T] "
+
 setopt INC_APPEND_HISTORY # Write to the history file immediately, not when the shell exits.
 setopt EXTENDED_HISTORY # Write the history file in the ":start:elapsed;command" format.
 setopt HIST_FIND_NO_DUPS # Do not display a line previously found.
@@ -36,10 +35,17 @@ export LESS_TERMCAP_so=$'\e[01;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
 
+# Add some keybindings
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-word
+
 # Source custom aliases and functions
 source $HOME/.zsh_aliases
 source $HOME/.zsh_functions
-source $HOME/.zsh_kubernetes
+
+if [ -f $HOME/.zsh_kubernetes ]; then
+  source $HOME/.zsh_kubernetes
+fi
 
 # Homebrew
 if command -v brew >/dev/null 2>&1
@@ -96,3 +102,5 @@ fi
 
 autoload -Uz compinit
 compinit
+
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
