@@ -1,6 +1,7 @@
 # general
 alias sido='sudo' # yes... don't judge...
 
+# cd
 alias ..='cd ..'
 alias ...='cd ../..'
 
