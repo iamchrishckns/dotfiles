@@ -1,5 +1,6 @@
 # general
 alias sido='sudo' # yes... don't judge...
+alias suido='sudo'
 
 # cd
 alias ..='cd ..'
@@ -10,9 +11,21 @@ alias ls='ls -h --color=auto'
 alias ll='ls -lh --color=auto'
 alias la='ls -lah --color=auto'
 
+# rm
+alias rm='rm -i'
+
+# mv
+alias mv='mv -i'
+
+# cp
+alias cp='cp -i'
+
 # grep
 alias grep='grep -i --color=auto'
 alias g='grep -i --color=auto'
+
+# mkdir
+alias mkdir='mkdir -p'
 
 # watch
 alias watch='watch --color'
@@ -30,8 +43,11 @@ alias tls='tmux -u ls'
 alias tree='tree -pugsh --du'
 alias wtree='watch --color "tree -pugsh --du"'
 
-# mkdir
-alias mkdir='mkdir -p'
+# rsync
+alias rsync='rsync -azhv --info=progress2 --partial'
+alias rsynclist='rsync -azhv --info=progress2 --partial --list-only'
+alias rsyncdry='rsync -azhv --info=progress0 --partial --dry-run'
+alias rsyncdeletesource='rsync -azhv --info=progress2 --partial --remove-source-files'
 
 # homebrew
 alias brewup='brew update && brew upgrade'
@@ -40,6 +56,9 @@ alias brewclean='brew cleanup'
 # docker 
 alias d='docker'
 alias dc='docker compose'
+alias dcupd='docker compose up -d'
+alias dcdown='docker compose down'
+alias dclogsf='docker compose logs -f'
 
 # kubernetes
 alias k='kubectl'
@@ -68,3 +87,11 @@ alias p='php'
 # laravel
 alias l='php artisan'
 alias ldev='php artisan serve'
+
+# ssh
+alias sshconfigedit='$EDITOR ~/.ssh/config'
+
+# only on linux
+if [[ "$(uname)" == "Linux" ]]; then
+  alias os='cat /etc/os-release'
+fi

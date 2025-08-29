@@ -47,6 +47,9 @@ if [ -f $HOME/.zsh_kubernetes ]; then
   source $HOME/.zsh_kubernetes
 fi
 
+# Add scripts to path
+export PATH="$PATH:$HOME/dotfiles/scripts"
+
 # Homebrew
 if command -v brew >/dev/null 2>&1
 then
@@ -92,7 +95,15 @@ then
     *":$PNPM_HOME:"*) ;;
     *) export PATH="$PNPM_HOME:$PATH" ;;
   esac
-fi  
+fi
+
+# Go
+if command -v go >/dev/null 2>&1; then
+  export GOPATH=~/go/src
+  export GOBIN=~/go/bin
+
+  export PATH=$PATH:$GOPATH:$GOBIN
+fi
 
 # Zoxide
 if command -v zoxide >/dev/null 2>&1
