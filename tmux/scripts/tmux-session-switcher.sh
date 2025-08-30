@@ -3,7 +3,7 @@
 sessions=$(tmux list-sessions -F "#{session_name}" 2>/dev/null)
 current_session=$(tmux display-message -p '#S')
 
-sessions=$(echo "${sessions}" | grep -v "^${current_session}$")
+# sessions=$(echo "${sessions}" | grep -v "^${current_session}$")
 
 if [ -z "$sessions" ]; then
     echo "No tmux sessions found."
