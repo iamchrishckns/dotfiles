@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 sshconfig="${HOME}/.ssh/config"
 
@@ -127,4 +127,3 @@ if [[ "$1" == "code" ]]; then
   
   exit 0
 fi
-

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 rm -f $HOME/.tmux.conf
 rm -f $HOME/.tmux.conf.local

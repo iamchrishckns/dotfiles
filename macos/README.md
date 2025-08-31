@@ -18,21 +18,36 @@ The script is inspired by the following projects:
 ## Homebrew Applications
 
 ```bash
-brew install font-monaspace-nerd-font
-
+brew install bash
+brew install fzf
 brew install jandedobbeleer/oh-my-posh/oh-my-posh
 brew install tmux
-brew install fzf
+brew install tree
+brew install watch
+brew install yq
 brew install neovim
+brew install ffmpeg
+brew install imagemagick
+brew install rsync
 
+brew install go
+brew install node
+brew install php
+brew install composer
+
+brew install displayplacer
 brew install iina
 brew install mpv
 brew install orbstack
-brew install displayplacer
+
+brew install --cask visual-studio-code
+brew install --cask visual-studio-code@insiders
+brew install --cask github-copilot-for-xcode
+brew install --cask ghostty
 
 brew install --cask librewolf
 brew install --cask ungoogled-chromium
 
-brew install --cask github-copilot-for-xcode
 brew install --cask betterdisplay
+brew install --cask pearcleaner
 ```
