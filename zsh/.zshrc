@@ -55,8 +55,8 @@ if command -v brew >/dev/null 2>&1
 then
   export HOMEBREW_NO_ANALYTICS=1
 
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-  
+  eval "$("$(command -v brew)" shellenv)"
+
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 fi
 
