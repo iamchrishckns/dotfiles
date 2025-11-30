@@ -55,7 +55,13 @@ if command -v brew >/dev/null 2>&1
 then
   export HOMEBREW_NO_ANALYTICS=1
 
-  eval "$("$(command -v brew)" shellenv)"
+  if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  elif [[ "$OSTYPE" == "darwin"* ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  else
+    eval "$(brew shellenv)"
+  fi
 
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 fi
