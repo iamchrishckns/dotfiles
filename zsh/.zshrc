@@ -51,8 +51,8 @@ fi
 export PATH="$PATH:$HOME/dotfiles/scripts"
 
 # Homebrew
-if command -v brew >/dev/null 2>&1
-then
+# if command -v brew >/dev/null 2>&1
+# then
   export HOMEBREW_NO_ANALYTICS=1
 
   if [[ "$OSTYPE" == "linux-gnu"* ]]; then
@@ -64,7 +64,7 @@ then
   fi
 
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-fi
+# fi
 
 # Oh My Posh
 if command -v oh-my-posh >/dev/null 2>&1 
