@@ -16,8 +16,7 @@ selected=$(echo "${sessions}" | fzf \
   --style full \
   --padding 1 \
   --height 100% \
-  --border rounded \
-  --border-label " Tmux - Session Switcher " \
+  --border none \
   --list-label " Available Sessions (Currently on $current_session)" \
   --input-label " Search Sessions " \
   --preview-label " Session Preview " \
@@ -25,6 +24,9 @@ selected=$(echo "${sessions}" | fzf \
   --bind "enter:accept-or-print-query" \
   --exit-0
 )
+
+#   --border rounded \
+#   --border-label " Tmux - Session Switcher " \
 
 #   --footer "Press F1 for help" \
 
