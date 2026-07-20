@@ -1,138 +1,180 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
 
-# ANSI Borders
-# ┌──┬──┐ ╭╮
-# │  │  │ ╰╯
-# ├──┼──┤
-# │  │  │
-# └──┴──┘
-
-# Theme colors:
-# Decoration -> green
-# Default -> lightBlue
-# Root -> lightRed
-
-# Available colors:
-# black    red      green      yellow      blue      magenta      cyan      white
-# darkGray lightRed lightGreen lightYellow lightBlue lightMagenta lightCyan lightWhite
-
-version: 3
-
+version: 4
 palette:
+  accent: "#00C853"
   text: lightBlue
   textAlt: magenta
-  textRoot: red
   textKubernetes: "#40C4FF"
-  accent: "#00C853"
-
+  textRoot: red
 transient_prompt:
-  template: "{{ if .Root }}<p:textRoot>󰄾</>{{ else }}<p:text>󰄾</>{{ end }} "
-
+  template: "{{ if .Root }}<p:textRoot>\U000F013E</>{{ else }}<p:text>\U000F013E</>{{ end }} "
 blocks:
-  # Left prompt first line
   - type: prompt
     alignment: left
     segments:
       - type: os
         style: plain
         foreground: p:text
-        template: "<p:accent>(</>{{ if .WSL }}WSL at {{ end }}{{.Icon}}<p:accent>)</>"
+        templates:
+          - "<p:accent>(</>"
+          - "{{ if .WSL }}WSL at {{ end }}{{.Icon}}"
+          - "<p:accent>)</>"
 
       - type: session
         style: plain
         foreground: p:text
         foreground_templates:
           - "{{ if .Root }}p:textRoot{{ end }}"
-        template: "<p:accent>─(</>{{ .UserName }} on {{ .HostName }}<p:accent>)</>"
+        templates:
+          - "<p:accent>─(</>"
+          - "{{ .UserName }}{{ if .SSHSession }} via SSH{{ end }} on {{ .HostName }}"
+          - "<p:accent>)</>"
 
       - type: path
         style: plain
         min_width: 100
-        foreground: p:textAlt
-        properties:
+        options:
           folder_separator_icon: <#c0c0c0>/</>
           style: full
-        template: <p:accent>-(</>{{ .Path }}<p:accent>)</>
+        foreground: p:textAlt
+        templates:
+          - "<p:accent>-(</>"
+          - "{{ .Path }}"
+          - "<p:accent>)</>"
 
       - type: path
         style: plain
         max_width: 100
-        foreground: p:textAlt
-        properties:
+        options:
           folder_separator_icon: <#c0c0c0>/</>
           style: agnoster_short
-        template: <p:accent>-(</>{{ .Path }}<p:accent>)</>
+        foreground: p:textAlt
+        templates:
+          - "<p:accent>-(</>"
+          - "{{ .Path }}"
+          - "<p:accent>)</>"
 
-  # Right prompt first line
   - type: prompt
     alignment: right
     filler: "  "
     segments:
-      - type: text
+      - type: node
+        style: plain
+        options:
+          fetch_package_manager: true
+        foreground: p:text
+        templates:
+          - <p:accent>(</>
+          -  {{ .Full }} / {{ .PackageManagerName }}
+          - <p:accent>)-</>
+
+      - type: go
         style: plain
         foreground: p:text
-        template: "{{ if .Env.DEVBOX_SHELL_ENABLED }}<p:accent>(</>󱄅 Devbox {{ if .Env.OMP_DEVBOX_NAME }}- {{ .Env.OMP_DEVBOX_NAME }}{{ end }}<p:accent>)</>{{ end }}"
+        templates:
+          - <p:accent>(</>
+          -  {{ .Full }}
+          - <p:accent>)-</>
 
+      - foreground: p:text
+        type: php
+        style: plain
+        templates:
+          - <p:accent>(</>
+          -  {{ .Full }}
+          - <p:accent>)-</>
+
+      - type: terraform
+        style: plain
+        options:
+          fetch_version: true
+        foreground: p:text
+        templates:
+          - <p:accent>(</>
+          -  {{ .WorkspaceName }}{{ if .Version }} {{ .Version }}{{ end }}
+          - <p:accent>)-</>
+
+      - type: helm
+        style: plain
+        options:
+          display_mode: files
+        foreground: p:textKubernetes
+        templates:
+          - <p:accent>(</>
+          - "{{ if .Version }}\U000F10FE {{ .Version }}{{ end }}"
+          - <p:accent>)-</>
+        template: "  {{ .Version }}"
 
       - type: kubectl
         style: plain
-        alias: "Kubectl"
         min_width: 80
+        options:
+          parse_kubeconfig: true
         foreground: p:textKubernetes
         foreground_templates:
-          - "{{ if contains 'prod' .Context }}red{{ end }}"
-        properties:
-          parse_kubeconfig: true
+          - '{{ if any (contains "prod" (lower .Context)) (contains "prod" (lower .Cluster)) }}red{{ end }}'
         templates:
-          - "<p:accent>(</>"
-          - "{{ if .Context }}󱃾 {{ .Context }}{{ end }}"
+          - <p:accent>(</>
+          - "{{ if .Context }}\U000F10FE {{ .Context }}{{ end }}"
           - "{{ if .Namespace }} <p:accent>{{.Namespace}}</>{{ end }}"
           - "{{ if .Cluster }} @ {{ .Cluster }}{{ end }}"
-          - "<p:accent>)</>"
+          - <p:accent>)-</>
 
-      - type: session
+      - type: text
         style: plain
         foreground: p:text
-        template: "{{ if .SSHSession }}<p:accent>{{ if .Segments.Kubectl.Output }}-{{ end }}(</>SSH<p:accent>)</>{{ end }}"
+        templates:
+          - "{{ if .Env.VSCODE_INJECTION }}<p:accent>(</>VSCode<p:accent>)-</>{{ end }}"
+
+      - type: executiontime
+        style: plain
+        options:
+          threshold: 500
+          style: austin
+          always_enabled: true
+        foreground: p:text
+        templates:
+          - "<p:accent>(</>"
+          - " {{ .FormattedMs }}"
+          - "<p:accent>)</>"
 
       - type: battery
         style: plain
         min_width: 80
+        options:
+          charged_icon: 
+          charging_icon: 
+          discharging_icon: 
         foreground: p:text
         foreground_templates:
           - "{{if eq 'Charging' .State.String}}#40c4ff{{end}}"
           - "{{if eq 'Discharging' .State.String}}#ff5722{{end}}"
           - "{{if eq 'Full' .State.String}}#4caf50{{end}}"
-        properties:
-          charging_icon: 
-          discharging_icon: 
-          charged_icon: 
-        template: "<p:accent>-(</>{{ .Icon }} {{ .Percentage }}<p:accent>)</>"
+        templates:
+          - "<p:accent>-(</>"
+          - "{{ .Icon }} {{ .Percentage }} @ {{ .ChargeRate }}"
+          - "<p:accent>)</>"
 
-  # Left prompt second line
   - type: prompt
     alignment: left
     newline: true
     segments:
       - type: git
         style: plain
-        foreground: p:text
-        properties:
+        options:
           fetch_status: true
-          fetch_stash_count: true
-          fetch_worktree_count: true
           fetch_upstream_icon: true
-          branch_max_length: 0
+        foreground: p:text
         templates:
-          - "<p:accent>(</>"
+          - <p:accent>(</>
           - "{{ .UpstreamIcon }}{{ .HEAD }}{{ .BranchStatus }}"
           - "{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}"
           - "{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}"
           - "{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}"
           - "{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}"
-          - "<p:accent>)</>"
+          - <p:accent>)</>
 
-  # Left prompt third line
   - type: prompt
     alignment: left
     newline: true
@@ -142,4 +184,4 @@ blocks:
         foreground: p:text
         foreground_templates:
           - "{{ if .Root }}p:textRoot{{ end }}"
-        template: "󰄾 "
+        template: "\U000F013E "
