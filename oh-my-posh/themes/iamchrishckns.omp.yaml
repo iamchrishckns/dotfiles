@@ -113,12 +113,12 @@ blocks:
           parse_kubeconfig: true
         foreground: p:textKubernetes
         foreground_templates:
-          - '{{ if any (contains "prod" (lower .Context)) (contains "prod" (lower .Cluster)) }}red{{ end }}'
+          - '{{ if regexMatch "(?i)(prod|live)" (printf "%s %s" .Context .Cluster) }}red{{ end }}'
         templates:
           - <p:accent>(</>
           - "{{ if .Context }}\U000F10FE {{ .Context }}{{ end }}"
-          - "{{ if .Namespace }} <p:accent>{{.Namespace}}</>{{ end }}"
-          - "{{ if .Cluster }} @ {{ .Cluster }}{{ end }}"
+          - "{{ if .Cluster }} - {{ .Cluster }}{{ end }}"
+          - "{{ if .Namespace }}<p:accent> | {{.Namespace}}</>{{ end }}"
           - <p:accent>)-</>
 
       - type: text
