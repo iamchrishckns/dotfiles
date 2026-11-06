@@ -1,0 +1,18 @@
+font-family = Monaspace Radon NF
+font-feature = +liga
+font-size = 16
+
+window-height = 48
+window-width = 160
+window-show-tab-bar = always
+window-padding-balance = true
+
+background-image-opacity = 0.3
+background-image-fit = cover
+
+# custom-shader = shaders/snow_light.glsl
+custom-shader = shaders/snow.glsl
+# custom-shader = shaders/snow_windy.glsl
+custom-shader = shaders/cursor_tail.glsl
+
+config-file = ?config-local.ghostty
