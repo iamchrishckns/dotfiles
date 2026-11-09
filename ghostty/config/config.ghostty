@@ -1,5 +1,5 @@
 font-family = Monaspace Radon NF
-font-feature = +liga
+font-feature = "'calt', 'liga', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'ss09', 'ss10', 'cv01' 2, 'cv10', 'cv11', 'cv12', 'cv13', 'cv14', 'cv15', 'cv16', 'cv17', 'cv18', 'cv19', 'cv20', 'cv21', 'cv22', 'cv22', 'cv23', 'cv24', 'cv25', 'cv26', 'cv27', 'cv28', 'cv29', 'cv30', 'cv31', 'cv32', 'cv33', 'cv34', 'cv35', 'cv36', 'cv37', 'cv38', 'cv39', 'cv40', 'cv41', 'cv42', 'cv43', 'cv44', 'cv45', 'cv46', 'cv47', 'cv48', 'cv49', 'cv50', 'cv51', 'cv52', 'cv53', 'cv54', 'cv55', 'cv56', 'cv57', 'cv58', 'cv59', 'cv60', 'cv62'"
 font-size = 16
 
 window-height = 48
